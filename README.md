@@ -1,67 +1,178 @@
 # Movie Recommender System
 
-Unlock Your Next Favorite Film! Our NLP-powered Movie Recommendation Web App delivers tailored suggestions based on cast, genres, and production companies. Explore a seamless Streamlit interface, also, you can see the description of selected movies and access a list of all movies.
+## Table of Contents
+
+1. [Project Overview](#project-overview)
+2. [Features](#features)
+3. [Tech Stack](#tech-stack)
+4. [Project Structure](#project-structure)
+5. [Setup Guide](#setup-guide)
+6. [Usage](#usage)
+7. [Data Sources](#data-sources)
+8. [Recommendation Algorithms](#recommendation-algorithms)
+9. [API Integration](#api-integration)
+10. [Future Enhancements](#future-enhancements)
+11. [Contributing](#contributing)
+12. [License](#license)
 
 ## Project Overview
 
-Our Movie Recommender System, built using Python and Natural Language Processing (NLP), offers a user-friendly way to discover your next favorite movie. We utilize the bag-of-words concept to generate movie recommendations based on factors like similarity, tags, genre, and production company. Additionally, you can access detailed information about each movie and its cast.
+The Movie Recommender System is a Python-based web application that provides personalized movie recommendations using Natural Language Processing (NLP) techniques. Built with Streamlit, this system offers an intuitive interface for users to discover new movies based on various criteria such as similar movies, genres, production companies, and cast members.
 
-## Sample Application Screenshots
+## Features
 
+- Multiple recommendation algorithms based on movie attributes
+- Detailed movie information display (overview, ratings, cast, etc.)
+- Cast information with biographies
+- Comprehensive movie list with pagination
+- User-friendly interface powered by Streamlit
 
-![Sample Image 1](https://github.com/AnupamMittal-21/Movie-Recommender-System/assets/96871662/cce0c494-4dde-4872-868b-2f6f23b24a68)
-![Sample Image 2](https://github.com/AnupamMittal-21/Movie-Recommender-System/assets/96871662/ff4fd4bd-1cf3-4580-9614-67e8698b45e5)
+## Tech Stack
 
+- Python 3.7+
+- Streamlit
+- Pandas
+- NLTK
+- Scikit-learn
+- Requests (for API calls)
 
-**Description Page:** Explore essential movie details and information about the cast.
+## Project Structure
 
+```
+movie-recommender-system/
+│
+├── main.py                 # Main application file
+├── processing/
+│   ├── __init__.py
+│   ├── preprocess.py       # Data preprocessing and recommendation logic
+│   └── display.py          # Display helper functions
+│
+├── Files/
+│   ├── movies_dict.pkl     # Preprocessed movie data
+│   ├── movies2_dict.pkl    # Additional movie data
+│   ├── new_df_dict.pkl     # Processed dataframe for recommendations
+│   ├── similarity_tags_genres.pkl
+│   ├── similarity_tags_keywords.pkl
+│   ├── similarity_tags_tags.pkl
+│   ├── similarity_tags_tcast.pkl
+│   └── similarity_tags_tprduction_comp.pkl
+│
+├── tmdb_5000_credits.csv   # Raw movie credits data
+├── tmdb_5000_movies.csv    # Raw movie data
+├── requirements.txt        # Project dependencies
+└── README.md               # Project documentation
+```
 
-![Sample Image 3](https://github.com/AnupamMittal-21/Movie-Recommender-System/assets/96871662/beb53c76-4cd1-466d-b32d-97a63555c043)
-![Sample Image 4](https://github.com/AnupamMittal-21/Movie-Recommender-System/assets/96871662/bb6915a7-8c49-4bd8-ade9-45caeb701d75)
+## Setup Guide
 
+Follow these steps to set up the Movie Recommender System on your local machine:
 
-**Check All Movies Page:** Navigate between pages with ease using buttons or the slider.
+1. **Clone the repository**
 
+   ```
+   git clone https://github.com/yourusername/movie-recommender-system.git
+   cd movie-recommender-system
+   ```
 
-![Sample Image 5](https://github.com/AnupamMittal-21/Movie-Recommender-System/assets/96871662/02473070-91cf-45a0-8016-eee8b70ee2ae)
+2. **Set up a virtual environment** (optional but recommended)
 
+   ```
+   python3 -m venv movrecenv
+   source movrecenv/bin/activate  # On Windows, use `movrecenv\Scripts\activate`
+   ```
 
-## Watch the Demo
+3. **Install the required dependencies**
 
-
-For a live demonstration of our Movie Recommender System, watch the following video:
-[![Watch the Demo](https://img.youtube.com/vi/0BJgu4qZqOM/0.jpg)](https://youtu.be/0BJgu4qZqOM)
-
-
-## Try the App
-
-Explore the Movie Recommender System yourself! Our app is deployed on Streamlit. Click the link below to get started:
-[**Movie Recommender System App**](https://movie-recommender-syst.streamlit.app/)
-
-## Installation Guide
-
-Follow these steps to set up and run the application:
-
-1. **Clone the Repository:** 
-    ```bash
-    git clone https://github.com/AnupamMittal-21/Movie-Recommender-System.git
-    ```
-
-2. **Create a Virtual Environment:** 
-   Make sure you have a virtual environment set up for your project.
-
-3. **Install Dependencies:**
-   Install the required dependencies using the `requirements.txt` file:
-   ```bash
+   ```
    pip install -r requirements.txt
    ```
 
-4. **Run the Application:**
-   To start the app, execute the following command in your terminal:
-   ```bash
+4. **Download the necessary NLTK data(optional, no need to use this)**
+
+   ```
+   python3 -c "import nltk; nltk.download('stopwords')"
+   ```
+
+5. **Prepare the data (optional to need to do this too)**
+
+   - Ensure that `tmdb_5000_credits.csv` and `tmdb_5000_movies.csv` are in the project root directory.
+   - Run the preprocessing script to generate the required pickle files:
+     ```
+     python3 processing/preprocess.py
+     ```
+
+6. **Set up TMDB API(optional, dont do this too, I ave checked this the api key is aleady there and working)**
+
+   - Sign up for a TMDB API key at https://www.themoviedb.org/settings/api
+   - Create a `.env` file in the project root and add your API key:
+     ```
+     TMDB_API_KEY=your_api_key_here
+     ```
+
+7. **Run the Streamlit app (Final step to run) Good luck**
+   ```
    streamlit run main.py
    ```
 
-**Note**: When running the application for the first time, it may take some time as it creates necessary files and initializes the environment.
+The application should now be running on `http://localhost:8501`.
 
-Discover the joy of finding your next favorite movie with our Movie Recommender System!
+## Usage
+
+1. Open the application in your web browser.
+2. Choose one of the following options:
+   - "Recommend me a similar movie"
+   - "Describe me a movie"
+   - "Check all Movies"
+3. Follow the on-screen instructions to explore movie recommendations and details.
+
+## Data Sources
+
+This project uses the TMDB 5000 Movie Dataset, which includes:
+
+- tmdb_5000_movies.csv: Contains movie metadata
+- tmdb_5000_credits.csv: Contains cast and crew information
+
+Additional movie details and images are fetched in real-time from the TMDB API.
+
+## Recommendation Algorithms
+
+The system uses several recommendation algorithms based on cosine similarity:
+
+1. Tags-based recommendation
+2. Genre-based recommendation
+3. Production company-based recommendation
+4. Keyword-based recommendation
+5. Cast-based recommendation
+
+These algorithms use precomputed similarity matrices stored in pickle files for efficient recommendation generation.
+
+## API Integration
+
+The project integrates with The Movie Database (TMDB) API to fetch:
+
+- Movie posters
+- Detailed cast information
+- Person biographies
+
+Ensure you have a valid API key set up as described in the Setup Guide.
+
+## Future Enhancements
+
+- Implement user profiles for personalized recommendations
+- Integrate more data sources for a larger movie database
+- Implement advanced NLP techniques like word embeddings
+- Add features like user ratings and reviews
+
+## Contributing
+
+Contributions to improve the Movie Recommender System are welcome. Please follow these steps:
+
+1. Fork the repository
+2. Create a new branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
