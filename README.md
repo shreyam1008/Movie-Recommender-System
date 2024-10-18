@@ -120,9 +120,9 @@ The application should now be running on `http://localhost:8501`.
 
 1. Open the application in your web browser.
 2. Choose one of the following options:
-   - "Recommend me a similar movie"
-   - "Describe me a movie"
-   - "Check all Movies"
+   - "Recommend me a similar movie" ---here you give it a movie name, it gives out similar movie using a recommendation algo.
+   - "Describe me a movie" --- here you describe in natural sentence the movie you like to watch, and it recommends you the movie. suing natural language processing.
+   - "Check all Movies" -ust a list.
 3. Follow the on-screen instructions to explore movie recommendations and details.
 
 ## Data Sources
@@ -144,6 +144,10 @@ The system uses several recommendation algorithms based on cosine similarity:
 4. Keyword-based recommendation
 5. Cast-based recommendation
 
+mainly it has to algorightms.
+one for recommendations and
+another for natural language processing.
+
 These algorithms use precomputed similarity matrices stored in pickle files for efficient recommendation generation.
 
 ## API Integration
@@ -156,16 +160,21 @@ The project integrates with The Movie Database (TMDB) API to fetch:
 
 Ensure you have a valid API key set up as described in the Setup Guide.
 
-## Future Enhancements
+## Thoughts
 
-- Implement user profiles for personalized recommendations
-- Integrate more data sources for a larger movie database
-- Implement advanced NLP techniques like word embeddings
-- Add features like user ratings and reviews
+-editied for dilip singh(singhkdilip18@gmail.com) by shreyam adhikari(shreyam1008@gmail.com)
 
 ## Contributing
 
 Contributions to improve the Movie Recommender System are welcome. Please follow these steps:
+
+All right of the original project belongs to
+https://github.com/AnupamMittal-21/Movie-Recommender-System?tab=readme-ov-file
+
+This is a forked project with some minor edit(now and later) for the use for testing/school project.
+Any stars/credits/contributions to be made on the original repo.
+
+--for contribution.
 
 1. Fork the repository
 2. Create a new branch (`git checkout -b feature/AmazingFeature`)
